@@ -1,6 +1,7 @@
 <!-- 发现页面 -->
 <template>
 	<view>
+		<!-- <uni-nav-bar dark :fixed="true" shadow background-color="#f5f5f5" color="#999" status-bar left-icon="left" title="自定义1导航栏" @clickLeft="" /> -->
 		<!-- 轮播图 -->
 		<view class="banner">
 			<swiper 
@@ -29,27 +30,13 @@
 			</view>
 		</view>
 		<!-- 推荐歌单 -->
-		<!-- <view class="song-list">
-			<view class="tit-bar">
-				推荐歌单
-				<view class="more fr">
-					更多
-				</view>
-			</view>
-			<scroll-view scroll-x="true" class="scroll-view">
-				<view class="item" v-for="(item, index) in recommendedSongs" :key="index">
-					<img :src="item.picUrl" alt="推荐歌单" class="img">
-					<view class="desc ellipsis">
-						{{item.name}}
-					</view>
-					<view class="count">
-						{{item.playCount}}
-					</view>
-				</view>
-			</scroll-view>
-		</view> -->
+		<ScrollViewX style="--scrollViewWidth: 200%" title="推荐歌单" link="" :list="recommendedSongs" ></ScrollViewX>
 		
-		<ScrollViewX title="推荐歌单" link="" :list="recommendedSongs" ></ScrollViewX>
+		<!-- 热门播客 -->
+		<ScrollViewY title="热门播客" :list="hotPodcasts" link="" ></ScrollViewY>
+		
+		<!-- 雷达歌单 -->
+		<ScrollViewX style="--scrollViewWidth: 200%" title="雷达歌单" link="" :list="recommendedSongs" ></ScrollViewX>
 		
 		<!-- 新碟新歌 -->
 		<view class="song-list">
@@ -86,21 +73,6 @@
 			</scroll-view>
 		</view>
 		
-		<!-- 精选视频（云村） -->
-		<view class="video-list song-list">
-			<view class="tit-bar">
-				精选视频
-				<view class="more fr">
-					更多
-				</view>
-			</view>
-			<view class="video-item" v-for="(item, index) in videoLifes" :key="index">
-				<img class="img" :src="item.coverUrl" alt="">
-				<view class="desc ellipsis">
-					{{item.title}}
-				</view>
-			</view>
-		</view>
 	</view>
 	
 </template>
@@ -108,6 +80,7 @@
 <script>
 	import {reqGetBanner, reqGetRecommendedSongs, reqGetNewDiscAndNewSongs, reqGetVideoLife} from '@/api/index.js'
 	import ScrollViewX from '@/components/ScrollViewX.vue'
+	import ScrollViewY from '@/components/ScrollViewY.vue'
 	export default {
 		data() {
 			return {
@@ -120,18 +93,21 @@
 					{name: '直播'}
 				],
 				recommendedSongs: [],		// 存储推荐歌单
+				hotPodcasts: [],				// 存储热门播客
 				newType: 1,					// 新碟新歌类型
 				latestAlbum: [], 			// 存储新碟新歌
 				latestTempAlbum: [],		// 临时变量
-				videoLifes: []				// 存储视频
 			};
 		},
-		components: {ScrollViewX},
+		components: {
+			ScrollViewX,
+			ScrollViewY
+		},
 		onLoad() {
 			this.getBanner()
 			this.getRecommendedSongs()
+			this.getHotPodcast()
 			this.getNewDiscAndNewSongs()
-			this.getVideoLife()
 		},
 		onPullDownRefresh() {
 			console.log("page refresh.");
@@ -169,6 +145,16 @@
 					})
 				})
 			},
+			// 热门播客
+			getHotPodcast(){
+				const params = {
+					limit: 3
+				}
+				reqGetRecommendedSongs(params).then(res => {
+					this.hotPodcasts = res.result
+					
+				})
+			},
 			// 新歌新碟
 			getNewDiscAndNewSongs(){
 				reqGetNewDiscAndNewSongs().then(res => {
@@ -187,15 +173,7 @@
 				}
 				this.latestAlbum = this.latestTempAlbum.slice(temp.s, temp.e);
 			},
-			// 精选视频
-			getVideoLife(){
-				const params = {
-					id: 32154
-				}
-				reqGetVideoLife(params).then(res => {
-					this.videoLifes = res.data
-				})
-			}
+			
 		}
 	}
 </script>
@@ -267,7 +245,7 @@
 			}
 			
 		}
-	
+		
 		.song-list {
 			padding-left: 32rpx;
 			.tit-bar {
@@ -275,7 +253,7 @@
 				font-weight: 600;
 				line-height: 110rpx;
 			}
-	
+			
 			.more {
 				width:150rpx;
 				height:50rpx;
@@ -314,7 +292,7 @@
 				width: 100%;
 				white-space: nowrap;
 			}
-	
+			
 			.item {
 				position: relative;
 				display: inline-block;
@@ -385,6 +363,7 @@
 				line-height: 100rpx;
 			}
 		}
+		
 		
 		/*
 		 *平台差异化处理的代码可以放在底部，这样有利于集中管理

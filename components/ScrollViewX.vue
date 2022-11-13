@@ -1,4 +1,5 @@
 <template>
+	<!-- 横向滚动 -->
 	<view class="song-list-comp">
 		<view class="tit-bar">
 			{{title}}
@@ -99,6 +100,10 @@
 					background-size: 25rpx 25rpx;
 					transform: scale(0.8);
 				}
+			}
+		
+			.scroll-view {
+				width: var(--scrollViewWidth, 100%);
 			}
 		}
 </style>

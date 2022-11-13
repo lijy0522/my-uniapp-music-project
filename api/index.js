@@ -11,3 +11,5 @@ export const reqGetNewDiscAndNewSongs = (data) => request({url:'/album/newest', 
 
 // 精选视频（云村广场）
 export const reqGetVideoLife = (data) => request({url:'/related/allvideo', data, method:'GET'})
+
+// 登录

@@ -5,7 +5,15 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
-                "enablePullDownRefresh": true
+                "enablePullDownRefresh": true,
+				"app-plus": {
+					"titleNView": {
+						"searchInput": {
+							"placeholder": "大家都在搜",
+							"disabled": true
+						}
+					}
+				}
             }
             
         }
@@ -41,6 +49,30 @@
                 "enablePullDownRefresh": false
             }
         }
+        ,{
+            "path" : "pages/testPage/testPage",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false,
+				"app-plus":{
+					"titleNView": false
+				}
+            }
+            
+        }
+        ,{
+            "path" : "pages/myInfoPage/myInfoPage",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false,
+				"app-plus":{
+					"titleNView": false
+				}
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -73,17 +105,17 @@
 				"selectedIconPath": "static/tab/t_31.png"
 			},
 			{
-				"pagePath": "pages/concerned/concerned",
-				"text": "关注",
-				"iconPath": "static/tab/t_4.png",
-				"selectedIconPath": "static/tab/t_41.png"
-			},
-			{
 				"pagePath": "pages/cloud/cloud",
 				"text": "云村",
 				"iconPath": "static/tab/t_5.png",
 				"selectedIconPath": "static/tab/t_51.png"
-			}
+			},
+			{
+				"pagePath": "pages/myInfoPage/myInfoPage",
+				"text": "个人",
+				"iconPath": "static/tab/t_4.png",
+				"selectedIconPath": "static/tab/t_41.png"
+			},
 		]
 	},
 	"uniIdRouter": {}
