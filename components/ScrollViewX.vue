@@ -8,7 +8,7 @@
 			</navigator>
 		</view>
 		<scroll-view scroll-x="true" class="scroll-view">
-			<view class="item" v-for="(item, index) in list" :key="index">
+			<view class="item" v-for="(item, index) in list" :key="index" @click="goToUrl(item)">
 				<img :src="item.picUrl" alt="推荐歌单" class="img">
 				<view class="desc ellipsis">
 					{{item.name}}
@@ -35,6 +35,14 @@
 			list: {
 				type: Array,
 				default: []
+			}
+		},
+		methods: {
+			//跳转
+			goToUrl(item) {
+				uni.navigateTo({
+					url: '/pages/songList/songList?id=' + item.id
+				})
 			}
 		}
 	}

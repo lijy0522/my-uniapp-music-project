@@ -1,6 +1,18 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+		    "path" : "pages/startPage/startPage",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "",
+		        "enablePullDownRefresh": false,
+				"app-plus":{
+					"titleNView": false
+				}
+		    }
+		    
+		},
+		{
             "path" : "pages/discover/discover",
             "style" :                                                                                    
             {
@@ -29,7 +41,7 @@
         ,{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": ""
 			}
 		}
 		,{
@@ -49,6 +61,14 @@
                 "enablePullDownRefresh": false
             }
         }
+		,{
+		    "path" : "pages/palyMusicPage/palyMusicPage",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "",
+		        "enablePullDownRefresh": false
+		    }
+		}
         ,{
             "path" : "pages/testPage/testPage",
             "style" :                                                                                    
@@ -70,6 +90,15 @@
 				"app-plus":{
 					"titleNView": false
 				}
+            }
+            
+        }
+        ,{
+            "path" : "pages/songList/songList",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
             }
             
         }
@@ -115,7 +144,7 @@
 				"text": "个人",
 				"iconPath": "static/tab/t_4.png",
 				"selectedIconPath": "static/tab/t_41.png"
-			},
+			}
 		]
 	},
 	"uniIdRouter": {}

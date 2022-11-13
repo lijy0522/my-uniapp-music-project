@@ -12,7 +12,7 @@
 		<view class="myLikeSongs">
 			<view class="item">
 				<img src="../../static/image/myPage/head01.jpg" alt="图片" class="img">
-				<view class="desc ellipsis">
+				<view class="desc ellipsis" @click="skipPage">
 					我喜欢的音乐
 				</view>
 				<button class="likeModule">心动模式</button>
@@ -57,7 +57,11 @@
 
 		},
 		methods: {
-
+			skipPage(){
+				uni.navigateTo({
+					url: '/pages/songList/songList'
+				})
+			}
 		}
 	}
 </script>
